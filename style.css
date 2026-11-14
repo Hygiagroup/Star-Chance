@@ -44,7 +44,7 @@ a { color: var(--accent-dark); }
 .brand h1 { font-size: clamp(1.3rem, 5.5vw, 1.8rem); }
 
 .logo {
-  width: 48px;
+  width: 88px;
   height: auto;
   border-radius: 0;
   background: none;
@@ -250,4 +250,4 @@ a { color: var(--accent-dark); }
   .rung { animation: none; }
 }
 
-.brand .logo, .logo img { width: 48px !important; height: auto !important; background: none; border-radius: 0; }
+.brand .logo, .logo img { width: 88px !important; height: auto !important; background: none; border-radius: 0; }

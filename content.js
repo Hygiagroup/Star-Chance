@@ -19,7 +19,7 @@ const texts = {
 
   homeEyebrow: "Mission health kit",
   homeTitle: "Star Chance: daily health check for astronauts",
-  homeText: "Our project helps [user] to [do what] using [data] to [benefit].",
+  homeText: "Our project helps astronauts check their health using data from their own bodies to improve their well-being.",
   homeButton: "Explore the body map",
 
   bodyEyebrow: "Body scan",
@@ -35,7 +35,7 @@ const texts = {
   sourcesTitle: "Sources"
 };
 
-// One entry per body part (max 6).
+// BODY MAP: one entry per body part (max 6). Only the body map uses this.
 // The name (heart, bones, immune) has to match data-zone in the svg inside index.html.
 // status: "ok", "warning" or "danger"
 // value / unit: copy them exactly from the source. If the data is made up, say it's simulated.
@@ -45,6 +45,7 @@ const zones = {
     status: "ok",
     value: "70",
     unit: "lpm",
+    simulated: true,  // shows a "simulated" tag next to the value in the panel
     description: "The heart is a vital cardiovascular organ affected by weightlessness when about two liters of fluid shift to the upper body, making its monitoring crucial because cardiovascular disease and post-landing dizziness pose significant risks to astronaut health.",
     source: { name: "NASA cardiovascular and vision", url: "https://www.nasa.gov/directorates/esdmd/hhp/cardiovascular-and-vision/" }
   },
@@ -65,6 +66,7 @@ const zones = {
     source: { name: "NASA Immune System Research", url: "https://humanresearchroadmap.nasa.gov/risks/" }
   }
 };
+
 
 // RISKS: one entry per risk card. Only the Risks view uses this (it does NOT read zones).
 // system: where the risk lives, one of "Skeletal", "Muscular", "Organs" or "Whole body"

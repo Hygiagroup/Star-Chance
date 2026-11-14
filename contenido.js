@@ -65,9 +65,9 @@ const ZONAS = {
   defensas: {
     titulo: "Immune system",
     estado: "ok",
-    dato: "[simulated value]",
-    unidad: "[unit]",
-    explicacion: "[Explain in one or two short sentences.]",
+    dato: "7h",
+    unidad: "hours of sleep",
+    explicacion: "Rest is essential for maintaining a strong and healthy immune system. It helps the body recover, regenerate cells, produce immune cells, fight infections, and strengthen its natural defenses against viruses and bacteria.",
     fuente: { texto: "[Source name]", url: "https://humanresearchroadmap.nasa.gov/risks/" },
   },
   // Para agregar una zona, copien un bloque completo (con su coma al final)

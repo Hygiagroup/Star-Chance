@@ -206,7 +206,8 @@ a { color: var(--accent-dark); }
 .panel { min-height: 12rem; }
 .panel-empty { opacity: 0.75; }
 .panel h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-.panel-value { font-family: var(--font-data); font-size: 2rem; color: var(--accent); margin: 0.5rem 0; }
+.panel-value { font-family: var(--font-data); font-size: 1.6rem; color: var(--accent); margin: 0.5rem 0; }
+.panel-sim { font: 600 0.8rem var(--font-data); color: var(--text); background: var(--bg); border: 1px solid var(--main); border-radius: 999px; padding: 0.1rem 0.6rem; vertical-align: middle; }
 .panel-source { font-size: 0.9rem; margin-top: 1rem; }
 
 /* status badges */
@@ -237,6 +238,16 @@ a { color: var(--accent-dark); }
 }
 .card { display: grid; gap: 0.6rem; align-content: start; }
 .card .badge { justify-self: start; }
+.card .tag {
+  justify-self: start;
+  padding: 0.15rem 0.75rem;
+  border-radius: 999px;
+  background: var(--ok-bg);
+  font: 600 0.8rem var(--font-data);
+  text-transform: uppercase;
+}
+.card-figure { font-family: var(--font-data); font-size: 1.1rem; color: var(--accent); }
+.card-source { font-size: 0.9rem; }
 
 .source-list { padding-left: 1.2rem; display: grid; gap: 0.5rem; }
 

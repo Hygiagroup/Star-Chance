@@ -3,7 +3,7 @@
 // Everything visible should be in English.
 
 const project = {
-  name: "[Project name]"
+  name: "Star Chance"
 };
 
 const texts = {
@@ -18,7 +18,7 @@ const texts = {
   menuSources: "Sources",
 
   homeEyebrow: "Mission health kit",
-  homeTitle: "[Project name]: daily health check for astronauts",
+  homeTitle: "Star Chance: daily health check for astronauts",
   homeText: "Our project helps [user] to [do what] using [data] to [benefit].",
   homeButton: "Explore the body map",
 
@@ -43,10 +43,10 @@ const zones = {
   heart: {
     title: "Heart",
     status: "ok",
-    value: "[simulated value]",
-    unit: "[unit]",
-    description: "[One or two short sentences: what this zone is and why it matters.]",
-    source: { name: "[Source name]", url: "https://humanresearchroadmap.nasa.gov/risks/" }
+    value: "70",
+    unit: "lpm",
+    description: "The heart is a vital cardiovascular organ affected by weightlessness when about two liters of fluid shift to the upper body, making its monitoring crucial because cardiovascular disease and post-landing dizziness pose significant risks to astronaut health.",
+    source: { name: "NASA cardiovascular and vision", url: "https://www.nasa.gov/directorates/esdmd/hhp/cardiovascular-and-vision/" }
   },
   bones: {
     title: "Bones",
@@ -59,10 +59,10 @@ const zones = {
   immune: {
     title: "Immune system",
     status: "ok",
-    value: "[simulated value]",
-    unit: "[unit]",
-    description: "[One or two short sentences.]",
-    source: { name: "[Source name]", url: "https://humanresearchroadmap.nasa.gov/risks/" }
+    value: "7-9",
+    unit: "Hrs of sleep",
+    description: "Rest is essential for maintaining a strong and healthy immune system. It helps the body recover, regenerate cells, produce immune cells, fight infections, and strengthen its natural defenses against viruses and bacteria.",
+    source: { name: "NASA Immune System Research", url: "https://humanresearchroadmap.nasa.gov/risks/" }
   }
 };
 

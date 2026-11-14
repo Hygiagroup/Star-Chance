@@ -39,15 +39,16 @@ function sourceLink(s) {
   return '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.name + "</a>";
 }
 
-// risk cards (one per zone)
+// risk cards (one per entry in risks, not related to the body zones)
 var cards = document.getElementById("cards");
-Object.keys(zones).forEach(function (id) {
-  var z = zones[id];
+risks.forEach(function (r) {
   cards.innerHTML +=
     '<article class="card">' +
-    "<h3>" + z.title + "</h3>" +
-    badge(z.status) +
-    "<p>" + z.description + "</p>" +
+    '<span class="tag">' + r.system + "</span>" +
+    "<h3>" + r.title + "</h3>" +
+    '<p class="card-figure">' + r.figure + "</p>" +
+    "<p>" + r.description + "</p>" +
+    '<p class="card-source">Source: ' + sourceLink(r.source) + "</p>" +
     "</article>";
 });
 
@@ -72,7 +73,8 @@ function showZone(id) {
   panel.innerHTML =
     "<h3>" + z.title + "</h3>" +
     badge(z.status) +
-    '<p class="panel-value">' + z.value + " " + z.unit + "</p>" +
+    '<p class="panel-value">' + z.value + " " + z.unit +
+    (z.simulated ? ' <span class="panel-sim">simulated</span>' : "") + "</p>" +
     "<p>" + z.description + "</p>" +
     '<p class="panel-source">Source: ' + sourceLink(z.source) + "</p>";
 }

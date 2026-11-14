@@ -1,98 +1,93 @@
-/* =====================================================================
-   APP.JS  ·  La lógica de la página. Computación puede mejorarla;
-   los demás NO necesitan tocar este archivo.
-   Qué hace:
-     1) Escribe los textos de contenido.js en la página.
-     2) Arma el menú, las tarjetas y la lista de fuentes.
-     3) Al tocar una zona del cuerpo, muestra su información en el panel.
-   ===================================================================== */
+// puts the text from content.js into the page and handles the menu + body map
 
-// 1) Textos: cada elemento con data-texto="clave" recibe TEXTOS[clave]
-document.querySelectorAll("[data-texto]").forEach((el) => {
-  const clave = el.dataset.texto;
-  if (TEXTOS[clave] !== undefined) el.textContent = TEXTOS[clave];
+// texts
+document.querySelectorAll("[data-text]").forEach(function (el) {
+  var key = el.dataset.text;
+  if (texts[key] !== undefined) {
+    el.textContent = texts[key];
+  }
 });
-document.title = PROYECTO.nombre;
+document.title = project.name;
 
-// 2a) Menú
-const menu = document.getElementById("menu");
-SECCIONES.forEach((s) => {
-  const a = document.createElement("a");
-  a.href = "#" + s.id;
-  a.textContent = s.texto;
-  menu.appendChild(a);
-});
+// menu: only one view is visible at a time
+var tabs = document.querySelectorAll(".tab");
 
-// Etiqueta de estado (texto + color)
-function etiquetaEstado(estado) {
-  const span = document.createElement("span");
-  span.className = "estado estado--" + estado;
-  span.textContent = ETIQUETAS_ESTADO[estado] || estado;
-  return span;
+function showView(name) {
+  if (!document.getElementById("view-" + name)) {
+    name = tabs[0].dataset.go;
+  }
+  tabs.forEach(function (tab) {
+    var view = document.getElementById("view-" + tab.dataset.go);
+    if (view) view.hidden = tab.dataset.go !== name;
+    tab.classList.toggle("active", tab.dataset.go === name);
+  });
+  window.scrollTo(0, 0);
 }
 
-// Enlace de fuente
-function enlaceFuente(f) {
-  const a = document.createElement("a");
-  a.href = f.url;
-  a.target = "_blank";
-  a.rel = "noopener";
-  a.textContent = f.texto;
-  return a;
+document.querySelectorAll("[data-go]").forEach(function (el) {
+  el.addEventListener("click", function () {
+    showView(el.dataset.go);
+  });
+});
+
+// helpers
+function badge(status) {
+  return '<span class="badge badge-' + status + '">' + (statusLabels[status] || status) + "</span>";
 }
 
-// 2b) Tarjetas de riesgos (una por zona)
-const tarjetas = document.getElementById("tarjetas");
-Object.values(ZONAS).forEach((z) => {
-  const t = document.createElement("article");
-  t.className = "tarjeta";
-  const h = document.createElement("h3");
-  h.textContent = z.titulo;
-  const p = document.createElement("p");
-  p.textContent = z.explicacion;
-  t.append(h, etiquetaEstado(z.estado), p);
-  tarjetas.appendChild(t);
+function sourceLink(s) {
+  return '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.name + "</a>";
+}
+
+// risk cards (one per zone)
+var cards = document.getElementById("cards");
+Object.keys(zones).forEach(function (id) {
+  var z = zones[id];
+  cards.innerHTML +=
+    '<article class="card">' +
+    "<h3>" + z.title + "</h3>" +
+    badge(z.status) +
+    "<p>" + z.description + "</p>" +
+    "</article>";
 });
 
-// 2c) Fuentes
-const listaFuentes = document.getElementById("listaFuentes");
-FUENTES.forEach((f) => {
-  const li = document.createElement("li");
-  li.appendChild(enlaceFuente(f));
-  listaFuentes.appendChild(li);
+// sources list
+var sourceList = document.getElementById("source-list");
+sources.forEach(function (s) {
+  sourceList.innerHTML += "<li>" + sourceLink(s) + "</li>";
 });
 
-// 3) Clic en una zona del cuerpo -> panel
-const panel = document.getElementById("panel");
+// body map: click a zone and show its info in the panel
+var panel = document.getElementById("panel");
+var bodyZones = document.querySelectorAll(".zone");
 
-function mostrarZona(id) {
-  const z = ZONAS[id];
+function showZone(id) {
+  var z = zones[id];
   if (!z) return;
 
-  document.querySelectorAll(".zona").forEach((g) =>
-    g.classList.toggle("activa", g.dataset.zona === id)
-  );
+  bodyZones.forEach(function (g) {
+    g.classList.toggle("active", g.dataset.zone === id);
+  });
 
-  const h = document.createElement("h3");
-  h.textContent = z.titulo;
-  const dato = document.createElement("p");
-  dato.className = "panel__dato";
-  dato.textContent = z.dato + " " + z.unidad;
-  const expl = document.createElement("p");
-  expl.textContent = z.explicacion;
-  const fuente = document.createElement("p");
-  fuente.className = "panel__fuente";
-  fuente.append("Source: ", enlaceFuente(z.fuente));
-
-  panel.replaceChildren(h, etiquetaEstado(z.estado), dato, expl, fuente);
+  panel.innerHTML =
+    "<h3>" + z.title + "</h3>" +
+    badge(z.status) +
+    '<p class="panel-value">' + z.value + " " + z.unit + "</p>" +
+    "<p>" + z.description + "</p>" +
+    '<p class="panel-source">Source: ' + sourceLink(z.source) + "</p>";
 }
 
-document.querySelectorAll(".zona").forEach((g) => {
-  g.addEventListener("click", () => mostrarZona(g.dataset.zona));
-  g.addEventListener("keydown", (e) => {
+bodyZones.forEach(function (g) {
+  g.addEventListener("click", function () {
+    showZone(g.dataset.zone);
+  });
+  g.addEventListener("keydown", function (e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      mostrarZona(g.dataset.zona);
+      showZone(g.dataset.zone);
     }
   });
 });
+
+// open the view from the url (#body) or the first one
+showView(location.hash.slice(1));

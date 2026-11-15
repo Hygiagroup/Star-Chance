@@ -67,9 +67,8 @@ const zones = {
   heart: {
     layer: "organs",
     title: "Heart",
-    status: "ok",
-    value: "70",
-    unit: "lpm",
+    value: " ",
+    unit: "Fluids shift to the head; dizziness after landing",
     simulated: true,  // shows a "simulated" tag next to the value in the panel
     description: "The heart is a vital cardiovascular organ affected by weightlessness when about two liters of fluid shift to the upper body, making its monitoring crucial because cardiovascular disease and post-landing dizziness pose significant risks to astronaut health.",
     source: { name: "NASA cardiovascular and vision", url: "https://www.nasa.gov/directorates/esdmd/hhp/cardiovascular-and-vision/" }

@@ -36,6 +36,7 @@ function badge(status) {
 }
 
 function sourceLink(s) {
+  if (!s.url) return s.name;  // a reference without a link is shown as plain text
   return '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.name + "</a>";
 }
 
@@ -44,7 +45,9 @@ var cards = document.getElementById("cards");
 risks.forEach(function (r) {
   cards.innerHTML +=
     '<article class="card">' +
-    '<span class="tag">' + r.system + "</span>" +
+    '<div class="card-head">' +
+    '<img class="card-icon" src="img/icon-' + r.system.toLowerCase().replace(" ", "-") + '.png" alt="" onerror="this.remove()">' +
+    '<span class="tag">' + r.system + "</span></div>" +
     "<h3>" + r.title + "</h3>" +
     '<p class="card-figure">' + r.figure + "</p>" +
     "<p>" + r.description + "</p>" +
@@ -249,7 +252,8 @@ function evaluateVital(v) {
     else if (s >= l.elevatedSys) { status = "warning"; detail = "Elevated"; }
     else { detail = "Normal"; }
   } else if (v.id === "temp") {
-    if (vals.temp >= l.fever) status = "warning";
+    if (vals.temp < l.hypo) { status = "warning"; detail = "Low body temperature (hypothermia range)"; }
+    else if (vals.temp >= l.fever) { status = "warning"; detail = "Fever"; }
   } else if (v.id === "sleep") {
     if (vals.sleep < l.min) status = "warning";
   }
@@ -372,7 +376,7 @@ function buildReport() {
   lines.push("");
   lines.push("Summary: " + (r.outside.length === 0 ? "all measured readings are inside the reference ranges."
     : r.outside.length + " reading(s) outside the reference range."));
-  lines.push("Note: automatic comparison with cited ranges. Not a diagnosis.");
+  lines.push("Note: automatic comparison with general medical reference ranges. Not a diagnosis.");
   reportText.value = lines.join("\n");
 
   document.getElementById("report-who").innerHTML = surgeon.text + " " + sourceLink(surgeon.source);

@@ -176,16 +176,12 @@ a { color: var(--accent-dark); }
   font: 700 0.78rem var(--font-text);
   cursor: pointer;
 }
-.tab svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.tab img {
+  width: 26px;
+  height: 26px;
 }
 .tab.active { background: var(--main); color: var(--bg); }
+.tab.active img { filter: brightness(0) invert(1); }
 .tab.sos { color: var(--accent); }
 .tab.sos.active { background: var(--accent); color: #fff; }
 
@@ -460,3 +456,10 @@ a { color: var(--accent-dark); }
 }
 .report-who, .report-status { font-size: 0.9rem; }
 .report-status { font-weight: 700; }
+
+/* risk card icon and the about block */
+.card-head { display: flex; align-items: center; gap: 0.6rem; }
+.card-icon { width: 40px; height: 40px; }
+.about { margin-top: 1.5rem; }
+.about h3 { margin-top: 0.4rem; }
+.about-made { font-weight: 700; }

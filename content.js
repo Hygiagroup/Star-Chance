@@ -20,7 +20,7 @@ const texts = {
 
   homeEyebrow: "Mission health kit",
   homeTitle: "Star Chance: daily health check for astronauts",
-  homeText: "Our project helps astronauts check their health using data from their own bodies to improve their well-being.",
+    homeText: "We are curious about how the human body behaves in a place as different as space. Star Chance shares that knowledge in a website that is easy to use, so anyone can learn it.",
   homeButton: "Explore the body map",
 
   bodyEyebrow: "Body scan",
@@ -51,7 +51,15 @@ const texts = {
   risksText: "Each risk comes from a cited source.",
 
   sourcesEyebrow: "Data sources",
-  sourcesTitle: "Sources"
+  sourcesTitle: "Sources",
+
+  aboutWhyTitle: "Why we chose this challenge",
+  aboutWhy: "We were curious about how the human body behaves in an environment as different as space, and we wanted to share that knowledge with a website that is intuitive and easy to use, so anyone can learn from it. Health in space has to be a priority. A tool like this can also help control centers on Earth stay informed about the crew's condition, so they can act correctly if a problem or an emergency comes up.",
+  aboutNameTitle: "Why Hygia",
+  aboutName: "We took a long time to choose our name. The one we wanted was already taken by another team, so we chose Hygia, after the Greek goddess of health.",
+  aboutAITitle: "Use of AI",
+  aboutAI: "We used AI tools (Claude, by Anthropic) to create a code template. The team chose the theme, verified the sources, and made the design decisions. The drawings of the bodies were created by the team’s designers.",
+  aboutMade: "Made by Team Hygia."
 };
 
 // BODY MAP: layers and zones. Only the body map uses this.
@@ -74,8 +82,8 @@ const zones = {
   kidneys: {
     layer: "organs",
     title: "Kidneys",
-    value: "2+ liters of urine",
-    unit: "per day",
+    value: "No figure",
+    unit: "in source",
     description: "Spaceflight raises the risk of kidney stones. Stones have been found in astronauts after landing and in one cosmonaut during flight. Bone loss is a major contributor.",
     source: { name: "NASA: Evidence Report, Risk of Renal Stone Formation", url: "https://ntrs.nasa.gov/citations/20170004709" }
   },
@@ -90,7 +98,6 @@ const zones = {
   bones: {
     layer: "skeletal",
     title: "Bones",
-    status: "warning",
     value: "1 to 1.5",
     unit: "% of density lost per month (4 to 6-month missions)",
     description: "Without gravity, bones lose density, most in the weight-bearing ones like the spine and hips. This can lead to fractures and early-onset osteoporosis.",
@@ -99,7 +106,8 @@ const zones = {
   muscles: {
     layer: "muscular",
     title: "Muscles",
-    value: "0% to 30% decline in physical tests",
+    value: "No figure",
+    unit: "in source",
     description: "Weightlessness makes muscles lose size, strength and endurance. Crew who follow the exercise schedule return with minimal losses on average.",
     source: { name: "NASA: Muscle Risk", url: "https://www.nasa.gov/directorates/esdmd/hhp/risk-of-impaired-performance-due-to-reduced-muscle-size-strength-and-endurance/" }
   },
@@ -182,7 +190,7 @@ const risks = [
 ];
 
 // CHECK-IN: one entry per vital sign. Only the Check-in view uses this.
-// The limits come from the cited source. If a source gives no number, we do not invent one.
+// The limits are general medical reference ranges (not NASA data). If a source gives no number, we do not invent one.
 // fields: what the person types (start = value after the first tap on +, meter = scale and green zone of the bar).
 // short: the reference shown on the tile. messages: the text shown for each status.
 // related: shown only when the reading is outside the reference range.
@@ -199,21 +207,21 @@ const vitals = [
       warning: "Outside the normal resting range. A rate that is often outside it is worth talking about with a doctor, especially with dizziness, fainting or shortness of breath."
     },
     related: { text: "NASA lists cardiovascular adaptations as a spaceflight risk.", source: { name: "NASA risks list", url: "https://www.nasa.gov/hrp/risks/" } },
-    source: { name: "Mayo Clinic: Heart rate", url: "https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/heart-rate" }
+    source: { name: "General medical reference" }
   },
   {
     id: "temp",
     name: "Body temperature",
-    fields: [{ id: "temp", label: "Temperature", unit: "\u00b0C", min: 33, max: 42, step: 0.1, start: 36.6, meter: { min: 35, max: 40, from: 35, to: 38 } }],
-    short: "Fever: 38 \u00b0C or higher",
-    reference: "Fever: 38 \u00b0C or higher (oral). Typical range: 36.1 to 37.2 \u00b0C",
-    limits: { fever: 38 },
+    fields: [{ id: "temp", label: "Temperature", unit: "\u00b0F", min: 86, max: 108, step: 0.1, start: 97.9, meter: { min: 90, max: 106, from: 95, to: 100.4 } }],
+    short: "Low: below 95 \u00b0F (35 \u00b0C) \u00b7 Fever: 100.4 \u00b0F (38 \u00b0C) or higher",
+    reference: "Hypothermia: below 95 \u00b0F (35 \u00b0C). Fever: 100.4 \u00b0F (38 \u00b0C) or higher (oral). Typical range: 97.0 to 99.0 \u00b0F (36.1 to 37.2 \u00b0C)",
+    limits: { hypo: 95, fever: 100.4 },
     messages: {
-      ok: "Below the fever threshold.",
-      warning: "This is a fever. Seek medical care if it comes with trouble breathing, chest pain, a bad headache, a stiff neck or confusion."
+      ok: "Between the low-temperature and fever thresholds.",
+      warning: "Outside the typical range. If it keeps happening or comes with other symptoms, talk to a doctor."
     },
     related: { text: "NASA says spaceflight stress can awaken dormant viruses.", source: { name: "NASA: Altered Immune System Responses", url: "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/" } },
-    source: { name: "Mayo Clinic: Fever first aid", url: "https://www.mayoclinic.org/first-aid/first-aid-fever/basics/art-20056685" }
+    source: { name: "General medical reference" }
   },
   {
     id: "bp",
@@ -232,7 +240,7 @@ const vitals = [
       danger: "In the hypertensive crisis range. Seek medical help right away."
     },
     related: { text: "NASA lists cardiovascular adaptations as a spaceflight risk.", source: { name: "NASA risks list", url: "https://www.nasa.gov/hrp/risks/" } },
-    source: { name: "American Heart Association: Understanding Blood Pressure Readings", url: "https://www.heart.org/bplevels" }
+    source: { name: "General medical reference" }
   },
   {
     id: "sleep",
@@ -246,15 +254,15 @@ const vitals = [
       warning: "Less than 7 hours. Regularly sleeping under 7 hours is linked with poor health outcomes."
     },
     related: { text: "NASA lists sleep loss and irregular schedules as a spaceflight risk.", source: { name: "NASA: Inadequate Sleep and Irregular Schedules", url: "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/" } },
-    source: { name: "Mayo Clinic: How many hours of sleep are enough?", url: "https://www.mayoclinic.org/healthy-lifestyle/adult-health/expert-answers/how-many-hours-of-sleep-are-enough/faq-20057898" }
+    source: { name: "General medical reference" }
   }
 ];
 
 // Simulated days for the demo buttons (made up, not real data). Add or remove entries freely.
 const scenarios = {
-  normal:    { label: "Normal", values: { pulse: 72, sys: 112, dia: 72, temp: 36.6, sleep: 7.8 } },
-  attention: { label: "Needs attention", values: { pulse: 104, sys: 132, dia: 84, temp: 37.1, sleep: 5.5 } },
-  urgent:    { label: "Urgent", values: { pulse: 118, sys: 186, dia: 122, temp: 38.4, sleep: 3 } }
+  normal:    { label: "Normal", values: { pulse: 72, sys: 112, dia: 72, temp: 97.9, sleep: 7.8 } },
+  attention: { label: "Needs attention", values: { pulse: 104, sys: 132, dia: 84, temp: 98.8, sleep: 5.5 } },
+  urgent:    { label: "Urgent", values: { pulse: 118, sys: 186, dia: 122, temp: 101.1, sleep: 3 } }
 };
 
 // Text of the summary. {n} is replaced with the number of readings outside the range.
@@ -265,7 +273,7 @@ const summaryTexts = {
   warning: "{n} reading(s) outside the reference range. Consider sharing a report with the flight surgeon.",
   danger: "A reading is in a range that needs medical help right away. Send the report now.",
   none: "Add a reading to see your summary.",
-  note: "Made by comparing your numbers with cited ranges. Not a diagnosis."
+  note: "Made by comparing your numbers with general medical reference ranges. Not a diagnosis."
 };
 
 // Who receives the report (role description from NASA)
@@ -290,10 +298,7 @@ const sources = [
   { name: "NASA: Evidence Report, Risk of Renal Stone Formation", url: "https://ntrs.nasa.gov/citations/20170004709" },
   { name: "NASA: Human Research Program risks list", url: "https://www.nasa.gov/hrp/risks/" },
   { name: "NASA: Mission Control crew health consoles", url: "https://www.nasa.gov/podcasts/houston-we-have-a-podcast/mission-control-crew-health-consoles" },
-  { name: "Mayo Clinic: Heart rate", url: "https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/heart-rate" },
-  { name: "American Heart Association: Understanding Blood Pressure Readings", url: "https://www.heart.org/bplevels" },
-  { name: "Mayo Clinic: Fever first aid", url: "https://www.mayoclinic.org/first-aid/first-aid-fever/basics/art-20056685" },
-  { name: "Mayo Clinic: How many hours of sleep are enough?", url: "https://www.mayoclinic.org/healthy-lifestyle/adult-health/expert-answers/how-many-hours-of-sleep-are-enough/faq-20057898" }
+  { name: "Check-in ranges (heart rate, blood pressure, temperature, sleep): general medical reference, not NASA data" }
 ];
 
 const statusLabels = { ok: "Normal", warning: "Attention", danger: "Critical" };

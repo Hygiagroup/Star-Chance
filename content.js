@@ -77,8 +77,8 @@ const zones = {
   kidneys: {
     layer: "organs",
     title: "Kidneys",
-    value: "No figure",
-    unit: "in source",
+    value: "2+ liters of urine",
+    unit: "per day",
     description: "Spaceflight raises the risk of kidney stones. Stones have been found in astronauts after landing and in one cosmonaut during flight. Bone loss is a major contributor.",
     source: { name: "NASA: Evidence Report, Risk of Renal Stone Formation", url: "https://ntrs.nasa.gov/citations/20170004709" }
   },
@@ -102,8 +102,7 @@ const zones = {
   muscles: {
     layer: "muscular",
     title: "Muscles",
-    value: "No figure",
-    unit: "in source",
+    value: "0% to 30% decline in physical tests",
     description: "Weightlessness makes muscles lose size, strength and endurance. Crew who follow the exercise schedule return with minimal losses on average.",
     source: { name: "NASA: Muscle Risk", url: "https://www.nasa.gov/directorates/esdmd/hhp/risk-of-impaired-performance-due-to-reduced-muscle-size-strength-and-endurance/" }
   },

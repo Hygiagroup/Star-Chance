@@ -20,7 +20,7 @@ const texts = {
 
   homeEyebrow: "Mission health kit",
   homeTitle: "Star Chance: daily health check for astronauts",
-    homeText: "We are curious about how the human body behaves in a place as different as space. Star Chance shares that knowledge in a website that is easy to use, so anyone can learn it.",
+  homeText: "We are curious about how the human body behaves in a place as different as space. Star Chance shares that knowledge in a website that is easy to use, so anyone can learn it.",
   homeButton: "Explore the body map",
 
   bodyEyebrow: "Body scan",

@@ -41,7 +41,7 @@ const texts = {
   reportOpen: "Prepare report for the flight surgeon",
 
   reportTitle: "Report for the flight surgeon",
-  reportText: "Share what is happening with the person who follows the crew's health.",
+  reportText: "Share what is happening with the person who follows the crew's health. In a real mission this would go to the flight surgeon.",
   reportCopy: "Copy report",
   reportSend: "Send to flight surgeon (simulated)",
   reportUrgent: "Send urgent report (simulated)",

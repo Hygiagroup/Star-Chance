@@ -359,20 +359,23 @@ function buildReport() {
   var r = lastCheckin;
   var lines = [];
   lines.push("STAR CHANCE - HEALTH CHECK-IN REPORT");
+  lines.push("To: Flight surgeon");
   lines.push(scenarioUsed ? "Data: SIMULATED (" + scenarioUsed + ")" : "Data: typed in by the user (demo, not medical data)");
   lines.push("Date and time: " + new Date().toLocaleString("en-US"));
   lines.push("");
   lines.push("Readings:");
+  var missing = [];
   vitals.forEach(function (v) {
     var item = r.results.filter(function (x) { return x.vital === v; })[0];
     if (!item) {
-      lines.push("- " + v.name + ": not measured");
+      missing.push(v.name);
     } else {
       var state = item.status === "ok" ? "in range" : (item.status === "danger" ? "URGENT" : "outside range");
       lines.push("- " + v.name + ": " + item.reading + (item.detail ? " (" + item.detail + ")" : "") +
         " - " + state + ". " + v.reference.replace(/\.$/, "") + ".");
     }
   });
+  if (missing.length) lines.push("Not measured: " + missing.join(", ") + ".");
   lines.push("");
   lines.push("Summary: " + (r.outside.length === 0 ? "all measured readings are inside the reference ranges."
     : r.outside.length + " reading(s) outside the reference range."));

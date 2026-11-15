@@ -75,15 +75,16 @@ const zones = {
   heart: {
     layer: "organs",
     title: "Heart",
-    simulated: true,  // shows a "simulated" tag next to the value in the panel
+    value: "More than 60",
+    unit: "% of astronauts can faint after landing without countermeasures",
     description: "The heart is a vital cardiovascular organ affected by weightlessness when about two liters of fluid shift to the upper body, making its monitoring crucial because cardiovascular disease and post-landing dizziness pose significant risks to astronaut health.",
     source: { name: "NASA cardiovascular and vision", url: "https://www.nasa.gov/directorates/esdmd/hhp/cardiovascular-and-vision/" }
   },
   kidneys: {
     layer: "organs",
     title: "Kidneys",
-    value: "No figure",
-    unit: "in source",
+    value: "1",
+    unit: "cosmonaut with a kidney stone during flight",
     description: "Spaceflight raises the risk of kidney stones. Stones have been found in astronauts after landing and in one cosmonaut during flight. Bone loss is a major contributor.",
     source: { name: "NASA: Evidence Report, Risk of Renal Stone Formation", url: "https://ntrs.nasa.gov/citations/20170004709" }
   },
@@ -106,19 +107,18 @@ const zones = {
   muscles: {
     layer: "muscular",
     title: "Muscles",
-    value: "No figure",
-    unit: "in source",
+    value: "10 to 12",
+    unit: "% average loss of strength and aerobic fitness",
     description: "Weightlessness makes muscles lose size, strength and endurance. Crew who follow the exercise schedule return with minimal losses on average.",
-    source: { name: "NASA: Muscle Risk", url: "https://www.nasa.gov/directorates/esdmd/hhp/risk-of-impaired-performance-due-to-reduced-muscle-size-strength-and-endurance/" }
+    source: { name: "NASA: Reduced Cardiorespiratory and Musculoskeletal Fitness", url: "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/" }
   },
   immune: {
     layer: "whole",
     title: "Immune system",
-    status: "ok",
-    value: "7-9",
-    unit: "Hrs of sleep",
-    description: "Rest is essential for maintaining a strong and healthy immune system. It helps the body recover, regenerate cells, produce immune cells, fight infections, and strengthen its natural defenses against viruses and bacteria.",
-    source: { name: "NASA Immune System Research", url: "https://humanresearchroadmap.nasa.gov/risks/" }
+    value: "4 of 8",
+    unit: "known human herpes viruses detected in astronauts during flight",
+    description: "Dormant viruses, like the one that causes chickenpox and shingles, can reactivate during spaceflight. Immune cells can stay less effective for up to 60 days after return to Earth.",
+    source: { name: "NASA: How Dormant Viruses Behave During Spaceflight", url: "https://www.nasa.gov/humans-in-space/nasa-investigates-how-dormant-viruses-behave-during-spaceflight/" }
   },
   nutrition: {
     layer: "whole",
@@ -167,9 +167,9 @@ const risks = [
   {
     title: "Altered immune system responses",
     system: "Whole body",
-    figure: "No figure in source",
-    description: "Spaceflight stress can awaken dormant viruses, which can cause symptoms like cold sores and shingles. NASA studies blood, saliva and urine samples to find the triggers.",
-    source: { name: "NASA: Risk of Altered Immune System Responses", url: "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/" }
+    figure: "4 of the 8 known human herpes viruses were detected in astronauts during spaceflight",
+    description: "Dormant viruses, like the one that causes chickenpox and shingles, can reactivate during spaceflight. Most reactivations cause no symptoms, and immune cells can stay less effective for up to 60 days after return to Earth.",
+    source: { name: "NASA: How Dormant Viruses Behave During Spaceflight", url: "https://www.nasa.gov/humans-in-space/nasa-investigates-how-dormant-viruses-behave-during-spaceflight/" }
   },
   {
     title: "Cardiovascular adaptations",
@@ -296,6 +296,8 @@ const sources = [
   { name: "NASA: Risk of Spaceflight Associated Neuro-ocular Syndrome", url: "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans" },
   { name: "NASA: Muscle Risk", url: "https://www.nasa.gov/directorates/esdmd/hhp/risk-of-impaired-performance-due-to-reduced-muscle-size-strength-and-endurance/" },
   { name: "NASA: Evidence Report, Risk of Renal Stone Formation", url: "https://ntrs.nasa.gov/citations/20170004709" },
+  { name: "NASA: How Dormant Viruses Behave During Spaceflight", url: "https://www.nasa.gov/humans-in-space/nasa-investigates-how-dormant-viruses-behave-during-spaceflight/" },
+  { name: "NASA: Reduced Cardiorespiratory and Musculoskeletal Fitness", url: "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/" },
   { name: "NASA: Human Research Program risks list", url: "https://www.nasa.gov/hrp/risks/" },
   { name: "NASA: Mission Control crew health consoles", url: "https://www.nasa.gov/podcasts/houston-we-have-a-podcast/mission-control-crew-health-consoles" },
   { name: "Check-in ranges (heart rate, blood pressure, temperature, sleep): general medical reference, not NASA data" }

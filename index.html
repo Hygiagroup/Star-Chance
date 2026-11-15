@@ -3,107 +3,174 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- El título de la pestaña del navegador se cambia en contenido.js (PROYECTO.nombre) -->
-  <title>"Star Chance"</title>
-  <!-- Letras de Google Fonts (si cambian las letras, cambien también este enlace y --letra-titulos / --letra-texto en estilo.css) -->
+  <title>Star Chance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
-  <link rel="stylesheet" href="estilo.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Nunito:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="colors.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ============ ENCABEZADO (color principal, 30%) ============ -->
-  <header class="encabezado">
-    <div class="contenedor encabezado__fila">
-      <!-- LOGO: cuando diseño entregue icono.svg, cambien src por "icono.svg" -->
-      <a class="marca" href="#inicio">
-        <span class="marca__logo" aria-hidden="true">★</span>
-        <span class="marca__nombre" data-texto="nombre"></span>
-      </a>
-      <!-- El menú se llena solo desde contenido.js (SECCIONES) -->
-      <nav class="menu" id="menu" aria-label="Main menu"></nav>
+<div class="wrapper">
+  <header class="header">
+    <div class="brand">
+      <!-- TODO: swap for our logo (logo.svg) when design is done -->
+      <span class="logo"><img src="img/sc_logo.png" alt="Logo"></span>
+      <h1 data-text="name"></h1>
+      <span class="tagline" data-text="tagline"></span>
     </div>
+    <svg class="pulse" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M0 20h50l8-14 10 28 9-20 6 6h117"/>
+    </svg>
   </header>
 
-  <main>
+  <p class="notice" data-text="notice"></p>
 
-    <!-- ============ SECCIÓN 1: INICIO ============ -->
-    <section class="seccion inicio" id="inicio">
-      <div class="contenedor">
-        <h1 data-texto="titulo"></h1>
-        <p class="inicio__frase" data-texto="frase"></p>
-        <a class="boton" href="#mapa" data-texto="botonInicio"></a>
-      </div>
+  <main>
+    <!-- home -->
+    <section class="view hero" id="view-home">
+      <svg class="dna" viewBox="0 0 200 240" aria-hidden="true">
+      <g class="rung" style="animation-delay: -0.0s"><line x1="55" y1="20" x2="145" y2="20"/><circle cx="55" cy="20" r="5"/><circle cx="145" cy="20" r="5"/></g>
+      <g class="rung" style="animation-delay: -0.3s"><line x1="55" y1="38" x2="145" y2="38"/><circle cx="55" cy="38" r="5"/><circle cx="145" cy="38" r="5"/></g>
+      <g class="rung" style="animation-delay: -0.6s"><line x1="55" y1="56" x2="145" y2="56"/><circle cx="55" cy="56" r="5"/><circle cx="145" cy="56" r="5"/></g>
+      <g class="rung" style="animation-delay: -0.9s"><line x1="55" y1="74" x2="145" y2="74"/><circle cx="55" cy="74" r="5"/><circle cx="145" cy="74" r="5"/></g>
+      <g class="rung" style="animation-delay: -1.2s"><line x1="55" y1="92" x2="145" y2="92"/><circle cx="55" cy="92" r="5"/><circle cx="145" cy="92" r="5"/></g>
+      <g class="rung" style="animation-delay: -1.5s"><line x1="55" y1="110" x2="145" y2="110"/><circle cx="55" cy="110" r="5"/><circle cx="145" cy="110" r="5"/></g>
+      <g class="rung" style="animation-delay: -1.8s"><line x1="55" y1="128" x2="145" y2="128"/><circle cx="55" cy="128" r="5"/><circle cx="145" cy="128" r="5"/></g>
+      <g class="rung" style="animation-delay: -2.1s"><line x1="55" y1="146" x2="145" y2="146"/><circle cx="55" cy="146" r="5"/><circle cx="145" cy="146" r="5"/></g>
+      <g class="rung" style="animation-delay: -2.4s"><line x1="55" y1="164" x2="145" y2="164"/><circle cx="55" cy="164" r="5"/><circle cx="145" cy="164" r="5"/></g>
+      <g class="rung" style="animation-delay: -2.7s"><line x1="55" y1="182" x2="145" y2="182"/><circle cx="55" cy="182" r="5"/><circle cx="145" cy="182" r="5"/></g>
+      <g class="rung" style="animation-delay: -3.0s"><line x1="55" y1="200" x2="145" y2="200"/><circle cx="55" cy="200" r="5"/><circle cx="145" cy="200" r="5"/></g>
+      <g class="rung" style="animation-delay: -3.3s"><line x1="55" y1="218" x2="145" y2="218"/><circle cx="55" cy="218" r="5"/><circle cx="145" cy="218" r="5"/></g>
+      </svg>
+      <p class="eyebrow" data-text="homeEyebrow"></p>
+      <h2 data-text="homeTitle"></h2>
+      <p class="view-intro" data-text="homeText"></p>
+      <div><button class="btn" type="button" data-go="body" data-text="homeButton"></button></div>
     </section>
 
-    <!-- ============ SECCIÓN 2: MAPA DEL CUERPO ============ -->
-    <section class="seccion" id="mapa">
-      <div class="contenedor">
-        <h2 data-texto="tituloMapa"></h2>
-        <p class="seccion__intro" data-texto="introMapa"></p>
+    <!-- body map -->
+    <section class="view" id="view-body" hidden>
+      <p class="eyebrow" data-text="bodyEyebrow"></p>
+      <h2 data-text="bodyTitle"></h2>
+      <p class="view-intro" data-text="bodyText"></p>
 
-        <div class="mapa">
-          <!-- CUERPO: dibujo de ejemplo. Diseño lo reemplaza por su cuerpo.svg.
-               REGLA: cada zona es un <g data-zona="..."> y ese nombre debe existir en ZONAS (contenido.js) -->
-          <svg class="cuerpo" viewBox="0 0 400 900" role="img" aria-label="Body diagram">
-            <!-- silueta (solo decorativa) -->
-            <g class="cuerpo__silueta">
-              <circle cx="200" cy="90" r="60"/>
-              <rect x="140" y="160" width="120" height="260" rx="40"/>
-              <rect x="70" y="170" width="55" height="260" rx="27"/>
-              <rect x="275" y="170" width="55" height="260" rx="27"/>
-              <rect x="145" y="410" width="50" height="420" rx="25"/>
-              <rect x="205" y="410" width="50" height="420" rx="25"/>
+      <div class="layer-tabs" id="layer-tabs"></div>
+
+      <div class="body-map">
+        <div class="figure">
+          <!-- The three drawings are stacked (same size). The coordinates (viewBox) are the ones of the drawings,
+               cropped around the body. Every clickable zone needs data-zone and the same name must exist in zones (content.js).
+               The .hit shapes are invisible areas over the drawing: change x, y, width and height to move them. -->
+          <svg class="body" viewBox="190 110 240 580" role="img" aria-label="Body diagram">
+            <image class="layer" id="layer-skeletal" href="img/bones.svg" x="0" y="0" width="612" height="792"/>
+            <image class="layer" id="layer-muscular" href="img/muscles.svg" x="0" y="0" width="612" height="792"/>
+            <image class="layer" id="layer-organs" href="img/organs.svg" x="0" y="0" width="612" height="792"/>
+
+            <g class="zones" data-layer="skeletal">
+              <g class="zone" data-zone="bones" tabindex="0" role="button" aria-label="Bones">
+                <rect class="hit" x="258" y="256" width="96" height="112" rx="20"/>
+                <ellipse class="hit" cx="305" cy="396" rx="43" ry="26"/>
+                <rect class="hit" x="256" y="426" width="34" height="240" rx="16"/>
+                <rect class="hit" x="321" y="426" width="34" height="240" rx="16"/>
+              </g>
             </g>
-            <!-- zonas que se pueden tocar -->
-            <g class="zona" data-zona="corazon" tabindex="0" role="button" aria-label="Heart">
-              <ellipse cx="215" cy="235" rx="30" ry="34"/>
+
+            <g class="zones" data-layer="muscular">
+              <g class="zone" data-zone="muscles" tabindex="0" role="button" aria-label="Muscles">
+                <rect class="hit" x="258" y="236" width="97" height="186" rx="22"/>
+                <rect class="hit" x="218" y="248" width="30" height="164" rx="14"/>
+                <rect class="hit" x="365" y="248" width="30" height="164" rx="14"/>
+                <rect class="hit" x="260" y="434" width="36" height="216" rx="16"/>
+                <rect class="hit" x="318" y="434" width="36" height="216" rx="16"/>
+              </g>
             </g>
-            <g class="zona" data-zona="huesos" tabindex="0" role="button" aria-label="Bones">
-              <rect x="150" y="560" width="40" height="230" rx="20"/>
+
+            <g class="zones" data-layer="organs">
+              <g class="zone" data-zone="eyes" tabindex="0" role="button" aria-label="Eyes and brain">
+                <ellipse class="hit" cx="306" cy="172" rx="45" ry="34"/>
+              </g>
+              <g class="zone" data-zone="heart" tabindex="0" role="button" aria-label="Heart">
+                <ellipse class="hit" cx="315" cy="292" rx="21" ry="26"/>
+              </g>
+              <g class="zone" data-zone="kidneys" tabindex="0" role="button" aria-label="Kidneys">
+                <ellipse class="hit" cx="276" cy="380" rx="22" ry="26"/>
+                <ellipse class="hit" cx="337" cy="380" rx="22" ry="26"/>
+              </g>
             </g>
-            <g class="zona" data-zona="defensas" tabindex="0" role="button" aria-label="Immune system">
-              <rect x="160" y="300" width="80" height="70" rx="20"/>
-            </g>
-            <!-- Para agregar una zona: copien un bloque <g class="zona"...> y cambien data-zona -->
           </svg>
 
-          <!-- Panel que muestra la información de la zona tocada (se llena con ZONAS) -->
-          <aside class="panel" id="panel" aria-live="polite">
-            <p class="panel__vacio" data-texto="panelVacio"></p>
-          </aside>
+          <!-- whole body: things that do not live in one place. They are made from zones with layer "whole" (content.js) -->
+          <div class="whole">
+            <span data-text="bodyWhole"></span>
+            <div class="chips" id="whole"></div>
+          </div>
         </div>
+
+        <aside class="panel" id="panel" aria-live="polite">
+          <p class="panel-empty" data-text="panelEmpty"></p>
+        </aside>
       </div>
     </section>
 
-    <!-- ============ SECCIÓN 3: RIESGOS (tarjetas automáticas desde ZONAS) ============ -->
-    <section class="seccion" id="riesgos">
-      <div class="contenedor">
-        <h2 data-texto="tituloRiesgos"></h2>
-        <p class="seccion__intro" data-texto="introRiesgos"></p>
-        <div class="tarjetas" id="tarjetas"></div>
+    <!-- check-in: one vital sign per step, then a summary. Steps are made from vitals in content.js -->
+    <section class="view" id="view-checkin" hidden>
+      <p class="eyebrow" data-text="checkinEyebrow"></p>
+      <h2 data-text="checkinTitle"></h2>
+      <p class="view-intro" data-text="checkinText"></p>
+
+      <div class="try">
+        <span data-text="checkinTry"></span>
+        <div class="chips" id="scenarios"></div>
       </div>
+
+      <div class="steps" id="steps"></div>
+      <div id="panels"></div>
     </section>
 
-    <!-- ============ SECCIÓN 4: FUENTES (lista automática desde FUENTES) ============ -->
-    <section class="seccion" id="fuentes">
-      <div class="contenedor">
-        <h2 data-texto="tituloFuentes"></h2>
-        <ul class="fuentes" id="listaFuentes"></ul>
-      </div>
+    <!-- risks, the cards are made from the risks list in content.js (not from zones) -->
+    <section class="view" id="view-risks" hidden>
+      <p class="eyebrow" data-text="risksEyebrow"></p>
+      <h2 data-text="risksTitle"></h2>
+      <p class="view-intro" data-text="risksText"></p>
+      <div class="cards" id="cards"></div>
     </section>
 
+    <!-- sources -->
+    <section class="view" id="view-sources" hidden>
+      <p class="eyebrow" data-text="sourcesEyebrow"></p>
+      <h2 data-text="sourcesTitle"></h2>
+      <ul class="source-list" id="source-list"></ul>
+    </section>
   </main>
+</div>
 
-  <!-- ============ PIE (color oscuro, 10%) ============ -->
-  <footer class="pie">
-    <div class="contenedor">
-      <p data-texto="aviso"></p>
-    </div>
-  </footer>
+<!-- bottom menu. data-go = the view it opens (view-<name>), max 5 buttons.
+     icons are from lucide.dev. add class "sos" for an emergency button -->
+<nav class="tabbar">
+  <button class="tab active" type="button" data-go="home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>
+    <span data-text="menuHome"></span>
+  </button>
+  <button class="tab" type="button" data-go="body">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><path d="M12 8v7M7 10l5 2 5-2M9 21l3-6 3 6"/></svg>
+    <span data-text="menuBody"></span>
+  </button>
+  <button class="tab" type="button" data-go="checkin">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    <span data-text="menuCheckin"></span>
+  </button>
+  <button class="tab" type="button" data-go="risks">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
+    <span data-text="menuRisks"></span>
+  </button>
+  <button class="tab" type="button" data-go="sources">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h13"/></svg>
+    <span data-text="menuSources"></span>
+  </button>
+</nav>
 
-  <!-- Orden importante: primero los textos, después la lógica -->
-  <script src="contenido.js"></script>
-  <script src="app.js"></script>
+<script src="content.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

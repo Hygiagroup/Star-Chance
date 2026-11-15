@@ -1,0 +1,21 @@
+/* colors and fonts, change them here and the whole page changes
+   rule we follow: 60% background, 30% main blue, 10% red */
+
+:root {
+  --bg: #FDF0D5;          /* page background (60%) */
+  --surface: #ffffff;     /* cards and menu */
+  --main: #003049;        /* header, home card, active tab (30%) */
+  --text: #003049;
+  --accent: #C1121F;      /* buttons, body zones, alerts (10%) */
+  --accent-dark: #780000; /* hover, selected zone, critical */
+  --light: #669BBC;       /* body outline, dna, normal status */
+
+  /* status colors: dot and background */
+  --ok: #669BBC;      --ok-bg: #D4E3EC;
+  --warning: #C1121F; --warning-bg: #F6DEE0;
+  --danger: #780000;  --danger-bg: #E1C7C7;
+
+  --font-title: "Outfit", "Nunito", system-ui, sans-serif;
+  --font-text: "Nunito", system-ui, sans-serif;
+  --font-data: "DM Mono", ui-monospace, monospace;
+}

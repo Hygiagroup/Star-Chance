@@ -160,7 +160,7 @@ function fieldHTML(f) {
     '<button type="button" class="step" data-field="' + f.id + '" data-dir="1" aria-label="Increase ' + f.label + '">+</button>' +
     "</div>" +
     '<span class="reading-unit">' + f.unit + "</span>" +
-    '<div class="meter"><span class="meter-zone" style="left:' + from + "%;width:" + (to - from) + '%"></span>' +
+    '<div class="meter" data-field="' + f.id + '"><span class="meter-zone" style="left:' + from + "%;width:" + (to - from) + '%"></span>' +
     '<span class="meter-dot" id="dot-' + f.id + '" hidden></span></div>' +
     "</div>";
 }
@@ -459,6 +459,40 @@ panels.addEventListener("keydown", function (e) {
     showStep(step + 1);
   }
 });
+
+// drag on the bar: the dot follows the finger and fills in the number
+var dragField = null;
+
+function setFromBar(e) {
+  var f = dragField;
+  var box = document.querySelector('.meter[data-field="' + f.id + '"]').getBoundingClientRect();
+  var pct = Math.max(0, Math.min(1, (e.clientX - box.left) / box.width));
+  var x = f.meter.min + pct * (f.meter.max - f.meter.min);
+  x = Math.round(Math.round(x / f.step) * f.step * 10) / 10;
+  document.getElementById("f-" + f.id).value = Math.max(f.min, Math.min(f.max, x));
+  scenarioUsed = "";
+  refresh();
+}
+
+function stopDrag() {
+  var bar = document.querySelector(".meter.dragging");
+  if (bar) bar.classList.remove("dragging");
+  dragField = null;
+}
+
+panels.addEventListener("pointerdown", function (e) {
+  var bar = e.target.closest(".meter");
+  if (!bar) return;
+  dragField = allFields().filter(function (f) { return f.id === bar.dataset.field; })[0];
+  bar.setPointerCapture(e.pointerId);
+  bar.classList.add("dragging");
+  setFromBar(e);
+});
+panels.addEventListener("pointermove", function (e) {
+  if (dragField) setFromBar(e);
+});
+panels.addEventListener("pointerup", stopDrag);
+panels.addEventListener("pointercancel", stopDrag);
 
 showStep(0);
 

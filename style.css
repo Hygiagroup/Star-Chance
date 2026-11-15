@@ -405,6 +405,12 @@ a { color: var(--accent-dark); }
 .meter-dot--warning, .meter-dot--invalid { background: var(--warning); }
 .meter-dot--danger { background: var(--danger); }
 
+/* the bar can be dragged */
+.meter { cursor: pointer; touch-action: none; }
+.meter::before { content: ""; position: absolute; inset: -0.9rem 0; }  /* bigger area for the finger */
+.meter-dot { width: 1.4rem; height: 1.4rem; margin: -0.7rem 0 0 -0.7rem; cursor: grab; }
+.meter.dragging .meter-dot { cursor: grabbing; transition: background 0.3s; }
+
 .btn.btn-light { background: var(--surface); color: var(--main); border: 2px solid var(--main); box-shadow: none; }
 .btn.btn-light:hover, .btn.btn-light:focus-visible { background: var(--main); color: var(--bg); }
 .btn.btn-urgent { background: var(--accent-dark); }
